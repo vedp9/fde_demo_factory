@@ -1,0 +1,30 @@
+{
+  "task": "T-2",
+  "gate": "check-schema",
+  "kind": "command",
+  "attempt": "9d6b2e7b-867c-4198-b062-21c1f7450fbf",
+  "command": "test -f opportunity_schema.json",
+  "started_at": "2026-09-24T12:03:30.501Z",
+  "observed_at": "2026-09-24T12:03:30.705Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": "9c13913e0479ac68471883fbb83a6b59ba5c5c97",
+    "dirty": true
+  },
+  "source_hash": "2b8072766774bb467dd16298f523a9a81df9ee9dd6bd11d8c3a0f6d6d5a33505",
+  "before_hash": "2b8072766774bb467dd16298f523a9a81df9ee9dd6bd11d8c3a0f6d6d5a33505",
+  "config_hash": "636cc4e7f934796029f16b96af9a08e483b6cdc65c573a71cfaccc74f3935c0b",
+  "environment": {
+    "node": "v26.7.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+    "variables": {}
+  },
+  "hash": "07b8d3192021c4f6d84f50c08134a57c07e4f615d8c9c9af71099aa68b7b1a39"
+}

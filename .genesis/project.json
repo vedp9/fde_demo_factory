@@ -1,0 +1,396 @@
+{
+  "schema_version": 2,
+  "project": {
+    "name": "fde-demo-factory",
+    "mode": "init",
+    "profile": "prototype",
+    "objective": "Build the FDE Demo Factory - MVP to SaaS Direction as per the final build plan",
+    "constraints": [],
+    "non_goals": [],
+    "trust_boundary": "local repository",
+    "created_at": "2026-09-24T11:23:06.727Z",
+    "updated_at": "2026-09-24T12:11:06.569Z"
+  },
+  "policy": {
+    "ponytail": "full",
+    "autonomy": "human-in-the-loop",
+    "learned_rule_promotion": "human-required",
+    "cleanup": "propose-only",
+    "traces": {
+      "storage": "local",
+      "commit_raw": false,
+      "redact_secrets": true
+    }
+  },
+  "lifecycle": {
+    "phase": "build",
+    "status": "active",
+    "active_task": "T-3",
+    "blocker": null,
+    "next_action": "Run the task pre-flight."
+  },
+  "commands": {},
+  "workflow": {
+    "type": "new-product",
+    "started_at": "2026-09-24T11:23:06.732Z",
+    "spec_check": {
+      "at": "2026-09-24T11:55:25.829Z",
+      "source_hash": "1a42222cdc79258ed818ff521b1f127768189ddf814e67992499b6d75bef2d44",
+      "requirements": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4",
+        "FR-1",
+        "FR-2",
+        "FR-3",
+        "FR-4",
+        "FR-5",
+        "FR-6",
+        "FR-7",
+        "NFR-1",
+        "NFR-2",
+        "NFR-3"
+      ]
+    },
+    "plan_check": {
+      "at": "2026-09-24T11:55:48.975Z",
+      "source_hash": "cab3bddb486308f6da200e842036312271de452e9c976bc1f86d1607a0002a37"
+    },
+    "plan_approval": {
+      "human": "owner",
+      "reason": "Updated plan for new spec",
+      "at": "2026-09-24T11:55:49.065Z",
+      "source_hash": "cab3bddb486308f6da200e842036312271de452e9c976bc1f86d1607a0002a37"
+    }
+  },
+  "artifacts": [
+    {
+      "id": "SPEC-1",
+      "type": "specification",
+      "path": "SPEC.md",
+      "status": "approved",
+      "requirements": [
+        "AC-1",
+        "AC-2",
+        "AC-3",
+        "AC-4",
+        "FR-1",
+        "FR-2",
+        "FR-3",
+        "FR-4",
+        "FR-5",
+        "FR-6",
+        "FR-7",
+        "NFR-1",
+        "NFR-2",
+        "NFR-3"
+      ],
+      "source_hash": "1a42222cdc79258ed818ff521b1f127768189ddf814e67992499b6d75bef2d44",
+      "approval": {
+        "human": "owner",
+        "reason": "Updated spec based on detailed prompt",
+        "at": "2026-09-24T11:55:37.698Z",
+        "source_hash": "1a42222cdc79258ed818ff521b1f127768189ddf814e67992499b6d75bef2d44"
+      }
+    }
+  ],
+  "assumptions": [],
+  "invariants": [],
+  "decisions": [],
+  "knowledge": [],
+  "tasks": [
+    {
+      "id": "SPEC-1",
+      "outcome": "Produce an approved, implementation-ready product specification",
+      "state": "done",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "SPEC.md"
+      ],
+      "dependencies": [],
+      "requirements": [],
+      "gates": [
+        {
+          "id": "independent-review",
+          "command": "",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "human": "owner",
+            "reason": "Updated spec based on detailed prompt",
+            "source_hash": "f3b11a21def9417eb090b80c5bd33e7ede766dee51f20b8a20b5d9016626048b",
+            "observed_at": "2026-09-24T11:55:37.698Z"
+          },
+          "kind": "review"
+        }
+      ],
+      "next_action": "Interview the human, record durable context, and replace every placeholder in SPEC.md.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-24T11:23:06.733Z",
+      "updated_at": "2026-09-24T11:55:37.698Z"
+    },
+    {
+      "id": "T-1",
+      "outcome": "Draft MVP architecture and workflow idea",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [],
+      "dependencies": [],
+      "requirements": [
+        "FR-4",
+        "FR-7",
+        "AC-2"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "check-arch",
+          "kind": "command",
+          "command": "test -f architecture.md",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T-1-check-arch-57e8763c-113d-4193-9c37-c72e447dca01.json",
+            "hash": "2de52eec2b1d483d14342ffc06b2ef57368896de7273ce5bf195f98fb93e96c1",
+            "source_hash": "2b8072766774bb467dd16298f523a9a81df9ee9dd6bd11d8c3a0f6d6d5a33505",
+            "config_hash": "1fc45d100a66440a99d6cf2df3be40c8693d851671689003b8b7d65274e1a4ef",
+            "observed_at": "2026-09-24T12:11:06.385Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-24T11:32:51.864Z",
+      "updated_at": "2026-09-24T12:11:06.557Z",
+      "base_manifest": {
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "6267f97c8efe2678b7e06dda582e9b7b23e1dfaa3793ea6c2e24cb984513cc53"
+      }
+    },
+    {
+      "id": "T-2",
+      "outcome": "Draft the AI/automation opportunity template and data schema",
+      "state": "paused",
+      "risk": "low",
+      "owner": null,
+      "scope": [],
+      "dependencies": [],
+      "requirements": [
+        "FR-2",
+        "FR-5",
+        "AC-1"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "check-schema",
+          "kind": "command",
+          "command": "test -f opportunity_schema.json",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T-2-check-schema-9d6b2e7b-867c-4198-b062-21c1f7450fbf.json",
+            "hash": "07b8d3192021c4f6d84f50c08134a57c07e4f615d8c9c9af71099aa68b7b1a39",
+            "source_hash": "2b8072766774bb467dd16298f523a9a81df9ee9dd6bd11d8c3a0f6d6d5a33505",
+            "config_hash": "636cc4e7f934796029f16b96af9a08e483b6cdc65c573a71cfaccc74f3935c0b",
+            "observed_at": "2026-09-24T12:03:30.705Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-24T11:33:05.351Z",
+      "updated_at": "2026-09-24T11:33:05.351Z",
+      "base_manifest": {
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "1a189392117771c81ac792f330efb0aa40895c8ddd3965f8dd061cb4cf44bed1",
+        "architecture.md": "0d2c9ac87035a120701cffaa1ba1fc9606f3adbd219fd07613761912e69def0b",
+        "implementation_plan.md": "7bd4e46d8e548e4286b271b9c63f042c8f7be844adc29342c2588fa8cf797f5d"
+      }
+    },
+    {
+      "id": "T-3",
+      "outcome": "Draft MVP UX and frontend/backend strategy",
+      "state": "active",
+      "risk": "low",
+      "owner": null,
+      "scope": [],
+      "dependencies": [],
+      "requirements": [
+        "FR-1",
+        "FR-3",
+        "FR-6",
+        "AC-3",
+        "NFR-1",
+        "NFR-2",
+        "AC-4"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "check-mvp",
+          "kind": "command",
+          "command": "test -f mvp_strategy.md",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-24T11:33:35.336Z",
+      "updated_at": "2026-09-24T11:33:35.337Z",
+      "base_manifest": {
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "1a189392117771c81ac792f330efb0aa40895c8ddd3965f8dd061cb4cf44bed1",
+        "architecture.md": "0d2c9ac87035a120701cffaa1ba1fc9606f3adbd219fd07613761912e69def0b",
+        "implementation_plan.md": "7bd4e46d8e548e4286b271b9c63f042c8f7be844adc29342c2588fa8cf797f5d",
+        "mvp_strategy.md": "7bd4e46d8e548e4286b271b9c63f042c8f7be844adc29342c2588fa8cf797f5d",
+        "opportunity_schema.json": "7d15a5fbf24d6700f00b25c700fcf3d9dcefbfa6bf676a4fe237b80f2b97daca"
+      }
+    },
+    {
+      "id": "T-4",
+      "outcome": "Define orchestration boundary",
+      "state": "queued",
+      "risk": "low",
+      "owner": null,
+      "scope": [],
+      "dependencies": [],
+      "requirements": [
+        "NFR-3"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "check-arch",
+          "kind": "command",
+          "command": "test -f architecture.md",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-24T11:55:48.869Z",
+      "updated_at": "2026-09-24T11:55:48.869Z"
+    }
+  ],
+  "learning_proposals": [],
+  "cleanup_proposals": [],
+  "controls": [
+    {
+      "id": "54bec6a3-d0ac-4fb7-ab97-98ac5b4f563f",
+      "at": "2026-09-24T12:11:05.778Z",
+      "action": "pause",
+      "task": "T-1",
+      "human": null,
+      "reason": null,
+      "revision": null
+    },
+    {
+      "id": "9b733efd-8488-4dd8-bc01-a72e84e71b1e",
+      "at": "2026-09-24T12:11:05.941Z",
+      "action": "pause",
+      "task": "T-2",
+      "human": null,
+      "reason": null,
+      "revision": null
+    },
+    {
+      "id": "a4c19e5d-11ca-4f1e-b473-3b7ec3819258",
+      "at": "2026-09-24T12:11:06.079Z",
+      "action": "resume",
+      "task": "T-1",
+      "human": null,
+      "reason": null,
+      "revision": null
+    }
+  ],
+  "attempts": [
+    {
+      "id": "9d6b2e7b-867c-4198-b062-21c1f7450fbf",
+      "task": "T-2",
+      "kind": "gate",
+      "command": "test -f opportunity_schema.json",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 9451,
+      "child_pid": 9497,
+      "started_at": "2026-09-24T12:03:30.501Z",
+      "status": "passed",
+      "before_hash": "2b8072766774bb467dd16298f523a9a81df9ee9dd6bd11d8c3a0f6d6d5a33505",
+      "config_hash": "636cc4e7f934796029f16b96af9a08e483b6cdc65c573a71cfaccc74f3935c0b",
+      "environment": {
+        "node": "v26.7.0",
+        "platform": "darwin",
+        "arch": "arm64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-24T12:03:30.705Z"
+    },
+    {
+      "id": "57e8763c-113d-4193-9c37-c72e447dca01",
+      "task": "T-1",
+      "kind": "gate",
+      "command": "test -f architecture.md",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 10026,
+      "child_pid": 10081,
+      "started_at": "2026-09-24T12:11:06.229Z",
+      "status": "passed",
+      "before_hash": "2b8072766774bb467dd16298f523a9a81df9ee9dd6bd11d8c3a0f6d6d5a33505",
+      "config_hash": "1fc45d100a66440a99d6cf2df3be40c8693d851671689003b8b7d65274e1a4ef",
+      "environment": {
+        "node": "v26.7.0",
+        "platform": "darwin",
+        "arch": "arm64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-24T12:11:06.385Z"
+    }
+  ],
+  "authorizations": [],
+  "experiments": [],
+  "incidents": [],
+  "discovery": null,
+  "checkpoint": null,
+  "legacy": null
+}
