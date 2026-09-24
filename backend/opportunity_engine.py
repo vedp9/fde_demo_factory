@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 from google import genai
 from pydantic import BaseModel
-from duckduckgo_search import DDGS
+from googlesearch import search
 from models import CompanyIntelligence, Opportunity, OpportunityList
 
 load_dotenv()
@@ -65,19 +65,15 @@ async def generate_opportunities(intelligence: CompanyIntelligence) -> Opportuni
         gemini_out = response.parsed
         opportunities = []
         
-        # Initialize DuckDuckGo Search
-        ddgs = DDGS()
-        
         for opp in gemini_out.opportunities:
             sources = []
             try:
                 # Create a targeted search query for case studies or blogs
                 search_query = f"{opp.title} {intelligence.industry} AI case study"
                 
-                # Retrieve top 2 results
-                results = ddgs.text(search_query, max_results=2)
-                for r in results:
-                    sources.append(r['href'])
+                # Retrieve top 2 results using Google Search
+                for j in search(search_query, num=2, stop=2, pause=2.0):
+                    sources.append(j)
             except Exception as e:
                 print(f"Search failed for {opp.title}: {e}")
             
