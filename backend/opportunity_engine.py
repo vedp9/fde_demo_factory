@@ -2,7 +2,6 @@ import os
 from dotenv import load_dotenv
 from google import genai
 from pydantic import BaseModel
-from googlesearch import search
 from models import CompanyIntelligence, Opportunity, OpportunityList
 
 load_dotenv()
@@ -15,6 +14,7 @@ class GeminiOpportunity(BaseModel):
     business_value: str
     complexity: str
     confidence: str
+    supporting_sources: list[str]
 
 class GeminiOpportunityList(BaseModel):
     opportunities: list[GeminiOpportunity]
@@ -23,8 +23,7 @@ class GeminiOpportunityList(BaseModel):
 async def generate_opportunities(intelligence: CompanyIntelligence) -> OpportunityList:
     """
     Takes the structured company intelligence and uses Gemini to brainstorm 
-    3-5 distinct, highly relevant AI/Automation use cases. 
-    Then searches the web for supporting sources.
+    3-5 distinct, highly relevant AI/Automation use cases and links.
     """
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key or api_key == "your_api_key_here":
@@ -50,6 +49,7 @@ async def generate_opportunities(intelligence: CompanyIntelligence) -> Opportuni
     - business_value: The expected ROI or impact.
     - complexity: 'Low', 'Medium', or 'High'
     - confidence: 'Low', 'Medium', or 'High' based on how likely they need this.
+    - supporting_sources: Provide a list of exactly 1 or 2 URLs to real, existing public case studies, whitepapers, or blogs from reputable sources (e.g., McKinsey, AWS, Azure, Google Cloud, HBR) that validate this specific type of AI solution in their industry. MUST be fully formed URLs starting with https://
     """
 
     response = client.models.generate_content(
@@ -63,31 +63,17 @@ async def generate_opportunities(intelligence: CompanyIntelligence) -> Opportuni
 
     if response.parsed:
         gemini_out = response.parsed
-        opportunities = []
-        
-        for opp in gemini_out.opportunities:
-            sources = []
-            try:
-                # Create a targeted search query for case studies or blogs
-                search_query = f"{opp.title} {intelligence.industry} AI case study"
-                
-                # Retrieve top 2 results using Google Search
-                for j in search(search_query, num=2, stop=2, pause=2.0):
-                    sources.append(j)
-            except Exception as e:
-                print(f"Search failed for {opp.title}: {e}")
-            
-            opportunities.append(
-                Opportunity(
-                    title=opp.title,
-                    business_problem=opp.business_problem,
-                    potential_ai_solution=opp.potential_ai_solution,
-                    business_value=opp.business_value,
-                    complexity=opp.complexity,
-                    confidence=opp.confidence,
-                    supporting_sources=sources
-                )
-            )
+        opportunities = [
+            Opportunity(
+                title=opp.title,
+                business_problem=opp.business_problem,
+                potential_ai_solution=opp.potential_ai_solution,
+                business_value=opp.business_value,
+                complexity=opp.complexity,
+                confidence=opp.confidence,
+                supporting_sources=opp.supporting_sources
+            ) for opp in gemini_out.opportunities
+        ]
             
         return OpportunityList(opportunities=opportunities)
     else:
