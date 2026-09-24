@@ -1,7 +1,8 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from models import ResearchRequest, CompanyIntelligence
+from models import ResearchRequest, CompanyIntelligence, OpportunityList
 from research_engine import generate_company_intelligence
+from opportunity_engine import generate_opportunities
 
 app = FastAPI(title="FDE Demo Factory API", description="API for researching companies and discovering AI opportunities.")
 
@@ -22,7 +23,17 @@ async def perform_research(request: ResearchRequest):
         result = await generate_company_intelligence(request)
         return result
     except Exception as e:
-        # Catch errors gracefully so CORS headers are still appended to the response
+        raise HTTPException(status_code=400, detail=str(e))
+
+@app.post("/api/opportunities", response_model=OpportunityList)
+async def perform_opportunity_discovery(intelligence: CompanyIntelligence):
+    """
+    Take a CompanyIntelligence profile and generate 3-5 specific AI/Automation opportunities using Gemini.
+    """
+    try:
+        result = await generate_opportunities(intelligence)
+        return result
+    except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
 @app.get("/health")

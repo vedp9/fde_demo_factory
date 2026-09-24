@@ -17,3 +17,14 @@ class CompanyIntelligence(BaseModel):
     industry: str
     overview: str
     signals: List[Signal]
+
+class Opportunity(BaseModel):
+    title: str
+    business_problem: str
+    potential_ai_solution: str
+    business_value: str
+    complexity: str # 'Low', 'Medium', 'High'
+    confidence: str # 'High', 'Medium', 'Low'
+
+class OpportunityList(BaseModel):
+    opportunities: List[Opportunity]
