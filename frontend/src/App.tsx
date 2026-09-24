@@ -47,7 +47,16 @@ function App() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to fetch company intelligence.');
+        let errorMsg = 'Failed to fetch company intelligence.';
+        try {
+          const errData = await response.json();
+          if (errData.detail) {
+            errorMsg = errData.detail;
+          }
+        } catch (e) {
+          // Ignore json parse error
+        }
+        throw new Error(errorMsg);
       }
 
       const data = await response.json();
