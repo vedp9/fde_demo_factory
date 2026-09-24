@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from google import genai
 from pydantic import BaseModel
+from duckduckgo_search import DDGS
 from models import CompanyIntelligence, Opportunity, OpportunityList
 
 load_dotenv()
@@ -22,7 +23,8 @@ class GeminiOpportunityList(BaseModel):
 async def generate_opportunities(intelligence: CompanyIntelligence) -> OpportunityList:
     """
     Takes the structured company intelligence and uses Gemini to brainstorm 
-    3-5 distinct, highly relevant AI/Automation use cases.
+    3-5 distinct, highly relevant AI/Automation use cases. 
+    Then searches the web for supporting sources.
     """
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key or api_key == "your_api_key_here":
@@ -61,16 +63,36 @@ async def generate_opportunities(intelligence: CompanyIntelligence) -> Opportuni
 
     if response.parsed:
         gemini_out = response.parsed
-        opportunities = [
-            Opportunity(
-                title=opp.title,
-                business_problem=opp.business_problem,
-                potential_ai_solution=opp.potential_ai_solution,
-                business_value=opp.business_value,
-                complexity=opp.complexity,
-                confidence=opp.confidence
-            ) for opp in gemini_out.opportunities
-        ]
+        opportunities = []
+        
+        # Initialize DuckDuckGo Search
+        ddgs = DDGS()
+        
+        for opp in gemini_out.opportunities:
+            sources = []
+            try:
+                # Create a targeted search query for case studies or blogs
+                search_query = f"{opp.title} {intelligence.industry} AI case study"
+                
+                # Retrieve top 2 results
+                results = ddgs.text(search_query, max_results=2)
+                for r in results:
+                    sources.append(r['href'])
+            except Exception as e:
+                print(f"Search failed for {opp.title}: {e}")
+            
+            opportunities.append(
+                Opportunity(
+                    title=opp.title,
+                    business_problem=opp.business_problem,
+                    potential_ai_solution=opp.potential_ai_solution,
+                    business_value=opp.business_value,
+                    complexity=opp.complexity,
+                    confidence=opp.confidence,
+                    supporting_sources=sources
+                )
+            )
+            
         return OpportunityList(opportunities=opportunities)
     else:
         raise Exception("Failed to parse Gemini output for opportunities.")

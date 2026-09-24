@@ -22,6 +22,7 @@ interface Opportunity {
   business_value: string;
   complexity: string;
   confidence: string;
+  supporting_sources?: string[];
 }
 
 function App() {
@@ -256,6 +257,37 @@ function App() {
                     <span style={{ color: '#94a3b8' }}>Complexity: <strong style={{ color: '#f8fafc' }}>{opp.complexity}</strong></span>
                   </div>
                 </div>
+
+                {opp.supporting_sources && opp.supporting_sources.length > 0 && (
+                  <div style={{ marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                    <h4 style={{ color: '#94a3b8', fontSize: '0.9rem', marginBottom: '0.5rem', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <LinkIcon size={14} /> Supporting Sources
+                    </h4>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                      {opp.supporting_sources.map((url, sIdx) => (
+                        <a 
+                          key={sIdx} 
+                          href={url} 
+                          target="_blank" 
+                          rel="noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          style={{
+                            display: 'inline-block',
+                            background: 'rgba(59, 130, 246, 0.1)',
+                            color: '#60a5fa',
+                            padding: '0.4rem 0.8rem',
+                            borderRadius: '2rem',
+                            fontSize: '0.85rem',
+                            textDecoration: 'none',
+                            border: '1px solid rgba(59, 130, 246, 0.2)'
+                          }}
+                        >
+                          {new URL(url).hostname}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>

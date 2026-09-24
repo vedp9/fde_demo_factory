@@ -25,6 +25,7 @@ class Opportunity(BaseModel):
     business_value: str
     complexity: str # 'Low', 'Medium', 'High'
     confidence: str # 'High', 'Medium', 'Low'
+    supporting_sources: List[str] = []
 
 class OpportunityList(BaseModel):
     opportunities: List[Opportunity]
