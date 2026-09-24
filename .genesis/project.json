@@ -9,7 +9,7 @@
     "non_goals": [],
     "trust_boundary": "local repository",
     "created_at": "2026-09-24T11:23:06.727Z",
-    "updated_at": "2026-09-24T12:11:06.569Z"
+    "updated_at": "2026-09-24T16:30:55.991Z"
   },
   "policy": {
     "ponytail": "full",
@@ -23,11 +23,11 @@
     }
   },
   "lifecycle": {
-    "phase": "build",
-    "status": "active",
-    "active_task": "T-3",
+    "phase": "verify",
+    "status": "ready",
+    "active_task": null,
     "blocker": null,
-    "next_action": "Run the task pre-flight."
+    "next_action": "Review completed work and choose the next bounded outcome."
   },
   "commands": {},
   "workflow": {
@@ -229,7 +229,7 @@
     {
       "id": "T-3",
       "outcome": "Draft MVP UX and frontend/backend strategy",
-      "state": "active",
+      "state": "done",
       "risk": "low",
       "owner": null,
       "scope": [],
@@ -252,8 +252,14 @@
           "kind": "command",
           "command": "test -f mvp_strategy.md",
           "mandatory": true,
-          "status": "pending",
-          "evidence": null
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T-3-check-mvp-594d97c8-92b9-45d3-946f-b3beb6e6f66e.json",
+            "hash": "eda30a66c354e08a0c42c402942e0442d5a36ed78a0358da7bfc1b7af7417957",
+            "source_hash": "1498bd1fcf4a7c8f1c5affb473146b9c1c8a51c2cd644657d5a9e310dc0b4e80",
+            "config_hash": "2aee4aa871cda54618d1b849045e4da39c58db01d3e89a0b3e65653d3d1c2204",
+            "observed_at": "2026-09-24T16:30:55.023Z"
+          }
         }
       ],
       "next_action": "Run the task pre-flight.",
@@ -262,7 +268,7 @@
       "failures": [],
       "limitations": [],
       "created_at": "2026-09-24T11:33:35.336Z",
-      "updated_at": "2026-09-24T11:33:35.337Z",
+      "updated_at": "2026-09-24T16:30:55.228Z",
       "base_manifest": {
         "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
         "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
@@ -276,7 +282,7 @@
     {
       "id": "T-4",
       "outcome": "Define orchestration boundary",
-      "state": "queued",
+      "state": "done",
       "risk": "low",
       "owner": null,
       "scope": [],
@@ -293,8 +299,14 @@
           "kind": "command",
           "command": "test -f architecture.md",
           "mandatory": true,
-          "status": "pending",
-          "evidence": null
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T-4-check-arch-c2557cea-d096-4574-8658-d944ac067931.json",
+            "hash": "da136db671985326ece73fc1e488c8e0895068e3eb0724d31ce0a4016eb02964",
+            "source_hash": "1498bd1fcf4a7c8f1c5affb473146b9c1c8a51c2cd644657d5a9e310dc0b4e80",
+            "config_hash": "302adf5d308a93343b6fd324ec7d2661820884a3cf63fcde6a3f780cb17d996e",
+            "observed_at": "2026-09-24T16:30:55.654Z"
+          }
         }
       ],
       "next_action": "Run the task pre-flight.",
@@ -303,7 +315,17 @@
       "failures": [],
       "limitations": [],
       "created_at": "2026-09-24T11:55:48.869Z",
-      "updated_at": "2026-09-24T11:55:48.869Z"
+      "updated_at": "2026-09-24T16:30:55.836Z",
+      "base_manifest": {
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "1a189392117771c81ac792f330efb0aa40895c8ddd3965f8dd061cb4cf44bed1",
+        "architecture.md": "0d2c9ac87035a120701cffaa1ba1fc9606f3adbd219fd07613761912e69def0b",
+        "implementation_plan.md": "7bd4e46d8e548e4286b271b9c63f042c8f7be844adc29342c2588fa8cf797f5d",
+        "mvp_strategy.md": "7bd4e46d8e548e4286b271b9c63f042c8f7be844adc29342c2588fa8cf797f5d",
+        "opportunity_schema.json": "7d15a5fbf24d6700f00b25c700fcf3d9dcefbfa6bf676a4fe237b80f2b97daca",
+        "workflow.md": "77c2bf42e38e10969a99f99144a9ec0c7af13e111b01c702c484174d0ce19ca3"
+      }
     }
   ],
   "learning_proposals": [],
@@ -332,6 +354,24 @@
       "at": "2026-09-24T12:11:06.079Z",
       "action": "resume",
       "task": "T-1",
+      "human": null,
+      "reason": null,
+      "revision": null
+    },
+    {
+      "id": "7e3bf6ca-cc77-4d2c-8051-b998bc8b7c74",
+      "at": "2026-09-24T16:30:54.721Z",
+      "action": "resume",
+      "task": "T-3",
+      "human": null,
+      "reason": null,
+      "revision": null
+    },
+    {
+      "id": "ead58ed3-1854-4ece-9863-ae0d0d717183",
+      "at": "2026-09-24T16:30:55.361Z",
+      "action": "resume",
+      "task": "T-4",
       "human": null,
       "reason": null,
       "revision": null
@@ -385,12 +425,69 @@
       "cost": null,
       "stop_reason": null,
       "ended_at": "2026-09-24T12:11:06.385Z"
+    },
+    {
+      "id": "594d97c8-92b9-45d3-946f-b3beb6e6f66e",
+      "task": "T-3",
+      "kind": "gate",
+      "command": "test -f mvp_strategy.md",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 11277,
+      "child_pid": 11341,
+      "started_at": "2026-09-24T16:30:54.852Z",
+      "status": "passed",
+      "before_hash": "1498bd1fcf4a7c8f1c5affb473146b9c1c8a51c2cd644657d5a9e310dc0b4e80",
+      "config_hash": "2aee4aa871cda54618d1b849045e4da39c58db01d3e89a0b3e65653d3d1c2204",
+      "environment": {
+        "node": "v26.7.0",
+        "platform": "darwin",
+        "arch": "arm64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-24T16:30:55.023Z"
+    },
+    {
+      "id": "c2557cea-d096-4574-8658-d944ac067931",
+      "task": "T-4",
+      "kind": "gate",
+      "command": "test -f architecture.md",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 11659,
+      "child_pid": 11732,
+      "started_at": "2026-09-24T16:30:55.480Z",
+      "status": "passed",
+      "before_hash": "1498bd1fcf4a7c8f1c5affb473146b9c1c8a51c2cd644657d5a9e310dc0b4e80",
+      "config_hash": "302adf5d308a93343b6fd324ec7d2661820884a3cf63fcde6a3f780cb17d996e",
+      "environment": {
+        "node": "v26.7.0",
+        "platform": "darwin",
+        "arch": "arm64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-24T16:30:55.654Z"
     }
   ],
   "authorizations": [],
   "experiments": [],
   "incidents": [],
   "discovery": null,
-  "checkpoint": null,
+  "checkpoint": {
+    "at": "2026-09-24T16:30:55.959Z",
+    "revision": {
+      "commit": "b01b22d85df29569eda1c7e4f3995dda7c20de5d",
+      "dirty": true,
+      "source_hash": "1498bd1fcf4a7c8f1c5affb473146b9c1c8a51c2cd644657d5a9e310dc0b4e80"
+    },
+    "active_task": null,
+    "next_action": "Review completed work and choose the next bounded outcome."
+  },
   "legacy": null
 }
