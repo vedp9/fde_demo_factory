@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from models import ResearchRequest, CompanyIntelligence
 from research_engine import generate_company_intelligence
@@ -7,7 +7,7 @@ app = FastAPI(title="FDE Demo Factory API", description="API for researching com
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins for development
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -18,9 +18,12 @@ async def perform_research(request: ResearchRequest):
     """
     Ingest a company website and LinkedIn URL to perform research and produce a structured company intelligence brief.
     """
-    # Orchestrate research and reasoning
-    result = await generate_company_intelligence(request)
-    return result
+    try:
+        result = await generate_company_intelligence(request)
+        return result
+    except Exception as e:
+        # Catch errors gracefully so CORS headers are still appended to the response
+        raise HTTPException(status_code=400, detail=str(e))
 
 @app.get("/health")
 async def health_check():
