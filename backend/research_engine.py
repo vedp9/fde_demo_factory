@@ -75,7 +75,7 @@ async def generate_company_intelligence(request: ResearchRequest) -> CompanyInte
     """
 
     response = client.models.generate_content(
-        model='gemini-3.1-pro-preview',
+        model='gemini-1.5-flash',
         contents=prompt,
         config={
             'response_mime_type': 'application/json',
